@@ -1,0 +1,78 @@
+{
+  "name": "inject-js-library",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/inject-js-library/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "apps/app-chrome-extension/inject-js-library",
+        "compiler": "swc",
+        "main": "apps/inject-js-library/src/main.ts",
+        "tsConfig": "apps/inject-js-library/tsconfig.app.json",
+        "webpackConfig": "apps/inject-js-library/webpack.config.js",
+        "generateIndexHtml": false,
+        "baseHref": "/",
+        "styles": [
+          "apps/inject-js-library/src/styles.scss"
+        ],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "outputHashing": "none",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "runtimeChunk": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/inject-js-library/src/environments/environment.ts",
+              "with": "apps/inject-js-library/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/webpack:dev-server",
+      "options": {
+        "buildTarget": "inject-js-library:build"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "inject-js-library:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "apps/inject-js-library/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/inject-js-library/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  }
+}

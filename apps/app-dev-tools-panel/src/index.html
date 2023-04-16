@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>ChromeExtensionDevtoolsPanel</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      html {
+        height: 100%;
+      }
+
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+
+        height: 100%;
+      }
+
+      .center-center {
+        position: relative;
+        display: inline-block;
+        top: 50%;
+        left: 50%;
+        transform: translateY(-50%) translateX(-50%);
+      }
+
+      #main-loader.finished {
+        visibility: hidden;
+        opacity: 0;
+        transition: all 1.5s ease-out;
+      }
+
+      .lds-ellipsis {
+        display: inline-block;
+        position: relative;
+        width: 160px;
+        height: 60px;
+        margin: 0 auto;
+      }
+      .lds-ellipsis div {
+        position: absolute;
+        top: 20px;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background: #fff;
+        animation-timing-function: cubic-bezier(0, 1, 1, 0);
+      }
+      .lds-ellipsis div:nth-child(1) {
+        left: 16px;
+        animation: lds-ellipsis1 0.6s infinite;
+      }
+      .lds-ellipsis div:nth-child(2) {
+        left: 16px;
+        animation: lds-ellipsis2 0.6s infinite;
+      }
+      .lds-ellipsis div:nth-child(3) {
+        left: 64px;
+        animation: lds-ellipsis2 0.6s infinite;
+      }
+      .lds-ellipsis div:nth-child(4) {
+        left: 112px;
+        animation: lds-ellipsis3 0.6s infinite;
+      }
+      @keyframes lds-ellipsis1 {
+        0% {
+          transform: scale(0);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+      @keyframes lds-ellipsis3 {
+        0% {
+          transform: scale(1);
+        }
+        100% {
+          transform: scale(0);
+        }
+      }
+      @keyframes lds-ellipsis2 {
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(48px, 0);
+        }
+      }
+    </style>
+  </head>
+  <body style="overflow: hidden">
+    <div
+      id="main-loader"
+      style="
+        height: 100vh;
+        background-color: #595ca3;
+        position: fixed;
+        width: 100%;
+        z-index: 999999999;
+        top: 0;
+        left: 0;
+      "
+    >
+      <div
+        class="center-center"
+        style="display: flex; flex-direction: column; width: 200px"
+      >
+        <img
+          src="assets/MYLOGO.png"
+          alt="Logo"
+        />
+        <div class="lds-ellipsis">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    </div>
+    <app-dev-tools-panel></app-dev-tools-panel>
+  </body>
+</html>

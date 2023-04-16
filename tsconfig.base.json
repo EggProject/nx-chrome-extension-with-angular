@@ -1,0 +1,31 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "ES2020",
+    "module": "esnext",
+    "lib": ["ES2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@app-grpc-networks-chrome-extension/shared-type": [
+        "libs/shared-type/src/index.ts"
+      ],
+      "@app-grpc-networks-chrome-extension/type-guard": [
+        "libs/type-guard/src/index.ts"
+      ],
+      "@app-grpc-networks-chrome-extension/type-guard-pipe": [
+        "libs/type-guard-pipe/src/index.ts"
+      ],
+      "@app-grpc-networks-chrome-extension/util": ["libs/util/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
